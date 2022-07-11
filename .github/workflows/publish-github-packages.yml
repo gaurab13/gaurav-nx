@@ -58,9 +58,9 @@ jobs:
           do
             echo "Project: ${LIBRARY}"
             cd ./dist/libs/$LIBRARY
-            npm publish 
+            yarn publish 
             cd ..
             cd ..
           done
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
