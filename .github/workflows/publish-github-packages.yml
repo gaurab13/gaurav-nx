@@ -47,7 +47,7 @@ jobs:
 
       - name: Build libraries
         run: |
-          yarn nx affected:build --prod --with-deps --base=main
+          yarn nx affected:build --prod --with-deps --base=origin/main
 
       - name: Publish libraries to Github Packages
         run: |
