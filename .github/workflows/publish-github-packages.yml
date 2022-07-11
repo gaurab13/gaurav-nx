@@ -5,9 +5,9 @@ name: Node.js Package
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build-and-release:
@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      
+
       - name: Install yarn
         run: npm install -g yarn
 
@@ -35,15 +35,15 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      
+
       - name: Install dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install
-        
+
       - name: Build libraries
         run: |
-          yarn nx affected:build --prod --with-deps --base=main
-      
+          yarn nx affected:build --prod --with-deps -- --base=main
+
       - name: Publish libraries to Github Packages
         run: |
           for LIBRARY in $(yarn nx print-affected --type=lib --select=projects)
