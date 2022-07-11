@@ -45,13 +45,16 @@ jobs:
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install
 
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+
       - name: Build libraries
         run: |
-          yarn nx affected:build --prod --with-deps --base=origin/main
+          yarn nx affected:build --prod --with-deps -base=${{ env.NX_HEAD }}
 
       - name: Publish libraries to Github Packages
         run: |
-          for LIBRARY in $(yarn nx affected:libs --select=projects --base=origin/main)
+          for LIBRARY in $(yarn nx print-affected --type=lib --select=projects -base=${{ env.NX_HEAD }})
           do
             cd ./dist/libs/$LIBRARY
             npm publish 
