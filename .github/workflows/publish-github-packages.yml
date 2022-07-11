@@ -51,7 +51,7 @@ jobs:
 
       - name: Publish libraries to Github Packages
         run: |
-          for LIBRARY in $(yarn nx print-affected --type=lib --select=projects)
+          for LIBRARY in $(yarn nx print-affected --type=lib --select=projects --base=origin/main)
           do
             cd ./dist/libs/$LIBRARY
             npm publish 
