@@ -1,0 +1,12 @@
+{
+  "name": "@gaurab13/use-logs2",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gaurab13/gaurav-nx.git",
+    "directory": "libs/use-logs2"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}

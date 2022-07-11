@@ -1,0 +1,13 @@
+{
+  "name": "use-log",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gaurab13/gaurav-nx.git",
+    "directory": "libs/use-log"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}

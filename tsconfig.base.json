@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@gaurav-nx/use-log": ["libs/use-log/src/index.ts"]
+      "@gaurav-nx/use-log": ["libs/use-log/src/index.ts"],
+      "@gaurav-nx/use-logs2": ["libs/use-logs2/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
