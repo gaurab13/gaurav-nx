@@ -27,6 +27,12 @@
         "jestConfig": "libs/use-logs2/jest.config.ts",
         "passWithNoTests": true
       }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "access": "public"
+      }
     }
   },
   "tags": []

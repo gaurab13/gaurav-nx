@@ -1,3 +1,3 @@
-export function useLogs2(): string {
-  return 'use-logs2';
+export function useLogs2(log: string): string {
+  return `Logs: ${log}`;
 }
