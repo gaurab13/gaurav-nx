@@ -56,6 +56,7 @@ jobs:
         run: |
           for LIBRARY in $(yarn nx print-affected --type=lib --select=projects --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }})
           do
+            echo "Value: ${LIBRARY}"
             cd ./dist/libs/$LIBRARY
             npm publish 
             cd ..
