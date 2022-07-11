@@ -54,7 +54,7 @@ jobs:
 
       - name: Publish libraries to Github Packages
         run: |
-          for LIBRARY in $(yarn nx print-affected --type=lib --select=projects --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }})
+          for LIBRARY in $(yarn nx print-affected --type=lib --select=projects --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }} --plain)
           do
             echo "Value: ${LIBRARY}"
             cd ..
