@@ -2,6 +2,6 @@ import { useLogs2 } from './use-logs2';
 
 describe('useLogs2', () => {
   it('should work', () => {
-    expect(useLogs2('text')).toEqual('Rendered Logs: text');
+    expect(useLogs2('text')).toEqual('Information: text');
   });
 });
