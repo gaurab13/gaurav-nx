@@ -5,19 +5,24 @@ name: Node.js Package
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - run: git fetch --no-tags --prune --depth=5 origin main
+
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      
+
       - name: Install yarn
         run: npm install -g yarn
 
@@ -35,23 +40,27 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      
+
       - name: Install dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install
-        
+
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+
       - name: Build libraries
         run: |
-          yarn nx affected:build --prod --with-deps --base=main
-      
+          yarn nx affected:build --prod --with-deps --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+
       - name: Publish libraries to Github Packages
         run: |
-          for LIBRARY in $(yarn nx print-affected --type=lib --select=projects)
+          for LIBRARY in $(yarn nx print-affected --type=lib --select=projects --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }} --plain | awk 'NR > 2 && $1 != "Done" { print $1 }')
           do
+            echo "Project: ${LIBRARY}"
             cd ./dist/libs/$LIBRARY
-            npm publish 
+            yarn publish 
             cd ..
             cd ..
           done
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
