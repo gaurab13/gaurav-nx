@@ -55,15 +55,18 @@ jobs:
         run: |
           yarn nx affected:build --prod --with-deps --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
 
-      - name: Publish libraries to Github Packages
+      - name: Publish use-log lib
+        continue-on-error: true
         run: |
-          for LIBRARY in $(yarn nx print-affected --type=lib --select=projects --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }} --plain | awk 'NR > 2 && $1 != "Done" { print $1 }')
-          do
-            echo "Project: ${LIBRARY}"
-            cd ./dist/libs/$LIBRARY
-            npm publish 
-            cd ..
-            cd ..
-          done
+          cd ./dist/libs/use-log
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish use-logs2 lib
+        continue-on-error: true
+        run: |
+          cd ./dist/libs/use-logs2
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
