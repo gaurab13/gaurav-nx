@@ -1,6 +1,6 @@
 {
   "name": "use-log",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "commonjs",
   "repository": {
     "type": "git",
@@ -8,6 +8,6 @@
     "directory": "libs/use-log"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "@gaurab13:registry": "https://npm.pkg.github.com"
   }
 }

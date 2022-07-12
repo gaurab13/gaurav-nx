@@ -1,3 +1,3 @@
-export function useLog(): string {
-  return 'use-log';
+export function useLog(log: string): string {
+  return `Hello ${log}`;
 }
