@@ -3,6 +3,16 @@
   "sourceRoot": "libs/use-log/src",
   "projectType": "library",
   "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/use-log",
+        "main": "libs/use-log/src/index.ts",
+        "tsConfig": "libs/use-log/tsconfig.lib.json",
+        "assets": ["libs/use-log/*.md"]
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
