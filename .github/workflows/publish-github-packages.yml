@@ -58,7 +58,7 @@ jobs:
           do
             echo "Project: ${LIBRARY}"
             cd ./dist/libs/$LIBRARY
-            yarn publish 
+            npm publish 
             cd ..
             cd ..
           done
