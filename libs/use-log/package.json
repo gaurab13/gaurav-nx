@@ -1,7 +1,6 @@
 {
-  "name": "use-log",
+  "name": "@gaurab13/use-log",
   "version": "0.0.3",
-  "type": "commonjs",
   "repository": {
     "type": "git",
     "url": "https://github.com/gaurab13/gaurav-nx.git",
